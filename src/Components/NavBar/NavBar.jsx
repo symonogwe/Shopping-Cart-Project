@@ -1,9 +1,8 @@
-import { Box, HStack, Switch, Text, useColorMode } from "@chakra-ui/react";
+import { Box, HStack, Switch, Text } from "@chakra-ui/react";
 import NavLink from "./NavLink";
+import { func, string } from "prop-types";
 
-const NavBar = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
-
+const NavBar = ({ colorMode, toggleColorMode }) => {
   return (
     <HStack
       justifyContent={"space-evenly"}
@@ -22,6 +21,11 @@ const NavBar = () => {
       </Box>
     </HStack>
   );
+};
+
+NavBar.propTypes = {
+  colorMode: string,
+  toggleColorMode: func,
 };
 
 export default NavBar;
