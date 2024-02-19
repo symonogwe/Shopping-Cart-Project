@@ -16,6 +16,11 @@ const NavLink = ({ path }) => {
       as={ReactRouterLink}
       to={path}
       className="nav-link"
+      fontSize={"xl"}
+      _hover={{
+        borderBottom: "none",
+        color: "#00a773",
+      }}
     >
       {navText[path]}
     </ChakraLink>
