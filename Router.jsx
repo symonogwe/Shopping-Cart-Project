@@ -11,6 +11,10 @@ const Router = () => {
       element: <App />,
       children: [
         {
+          element: <HomePage />,
+          index: true,
+        },
+        {
           path: "home",
           element: <HomePage />,
         },
