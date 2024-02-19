@@ -1,12 +1,5 @@
-import { Link as ReactRouterLink } from "react-router-dom";
-import {
-  Box,
-  Link as ChakraLink,
-  HStack,
-  Switch,
-  Text,
-  useColorMode,
-} from "@chakra-ui/react";
+import { Box, HStack, Switch, Text, useColorMode } from "@chakra-ui/react";
+import NavLink from "./NavLink";
 
 const NavBar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -18,33 +11,14 @@ const NavBar = () => {
       width="70%"
       margin={"0 auto"}
     >
-      <ChakraLink
-        color={"black"}
-        textDecoration={"none"}
-        as={ReactRouterLink}
-        to="home"
-      >
-        Home
-      </ChakraLink>
-      <ChakraLink
-        textDecoration={"none"}
-        color={"black"}
-        as={ReactRouterLink}
-        to="store"
-      >
-        Store
-      </ChakraLink>
-      <ChakraLink
-        textDecoration={"none"}
-        color={"black"}
-        as={ReactRouterLink}
-        to="cart"
-      >
-        Cart
-      </ChakraLink>
+      <NavLink path="home" />
+      <NavLink path="store" />
+      <NavLink path="cart" />
       <Box display="flex" gap={4} whiteSpace={"nowrap"}>
         <Switch onChange={() => toggleColorMode()} colorScheme={"teal"} />
-        <Text>{colorMode} mode</Text>
+        <Text className={colorMode === "dark" ? "nav-link" : "nav-link-light"}>
+          {colorMode} mode
+        </Text>
       </Box>
     </HStack>
   );
