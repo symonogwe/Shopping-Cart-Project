@@ -1,6 +1,16 @@
 import { Link as ReactRouterLink } from "react-router-dom";
-import { Link as ChakraLink, HStack } from "@chakra-ui/react";
+import {
+  Box,
+  Link as ChakraLink,
+  HStack,
+  Switch,
+  Text,
+  useColorMode,
+} from "@chakra-ui/react";
+
 const NavBar = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <HStack
       justifyContent={"space-evenly"}
@@ -32,6 +42,10 @@ const NavBar = () => {
       >
         Cart
       </ChakraLink>
+      <Box display="flex" gap={4} whiteSpace={"nowrap"}>
+        <Switch onChange={() => toggleColorMode()} colorScheme={"teal"} />
+        <Text>{colorMode} mode</Text>
+      </Box>
     </HStack>
   );
 };
