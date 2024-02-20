@@ -11,8 +11,8 @@ function App() {
     <Box
       width={{
         base: "100%",
-        md: "70%",
-        xl: "60%",
+        md: "80%",
+        xl: "70%",
       }}
       margin={"0 auto"}
       minHeight="100vh"
