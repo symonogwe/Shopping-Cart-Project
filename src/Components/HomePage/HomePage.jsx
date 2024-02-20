@@ -2,6 +2,9 @@ import { Box, Button, Heading, Image, Text, VStack } from "@chakra-ui/react";
 import { string } from "prop-types";
 import { useOutletContext } from "react-router-dom";
 
+import { Link as ChakraLink } from "@chakra-ui/react";
+import { Link as ReactRouterLink } from "react-router-dom";
+
 // images
 import pic from "/home/user/React/projects/shopping-cart-project/src/assets/homepage-pic.jpg";
 
@@ -50,7 +53,9 @@ const HomePage = () => {
         bg={colorMode === "dark" ? "gray.900" : "white"}
         color={colorMode === "dark" ? "white" : "black"}
       >
-        Shop Now
+        <ChakraLink as={ReactRouterLink} to="/store">
+          Shop Now
+        </ChakraLink>
       </Button>
     </VStack>
   );
