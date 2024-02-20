@@ -8,7 +8,17 @@ function App() {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Box width="75%" margin={"0 auto"} minHeight="100vh" paddingTop={3}>
+    <Box
+      width={{
+        base: "100%",
+        md: "70%",
+        xl: "60%",
+      }}
+      margin={"0 auto"}
+      minHeight="100vh"
+      paddingTop={3}
+      // bg={"red"}
+    >
       <NavBar colorMode={colorMode} toggleColorMode={toggleColorMode} />
       <Center minHeight={"90vh"}>
         <Outlet context={colorMode} />

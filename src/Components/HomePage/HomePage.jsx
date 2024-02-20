@@ -6,7 +6,8 @@ const HomePage = () => {
   const colorMode = useOutletContext();
   return (
     <VStack
-      maxW={"70%"}
+      // maxW={"70%"}
+      w={"100%"}
       alignItems={"center"}
       py={95}
       borderRadius={10}

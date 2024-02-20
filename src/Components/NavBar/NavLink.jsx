@@ -16,7 +16,11 @@ const NavLink = ({ path }) => {
       as={ReactRouterLink}
       to={path}
       className="nav-link"
-      fontSize={"xl"}
+      fontSize={{
+        base: "md",
+        md: "xl",
+        xl: "xl",
+      }}
       _hover={{
         borderBottom: "none",
         color: "#00a773",
