@@ -1,5 +1,5 @@
 import { Heading, SimpleGrid, Spinner, VStack } from "@chakra-ui/react";
-import axios from "axios";
+import axios, { CanceledError } from "axios";
 import { useEffect, useState } from "react";
 import DataCard from "./DataCard";
 
@@ -18,6 +18,7 @@ const Store = () => {
         setLoading(false);
       })
       .catch((err) => {
+        if (err instanceof CanceledError) return;
         setError(err.message);
         setLoading(false);
       });
@@ -35,6 +36,7 @@ const Store = () => {
           size="xl"
         />
       )}
+      {error && <p>{error}</p>}
       <SimpleGrid
         columns={{
           sm: 1,
