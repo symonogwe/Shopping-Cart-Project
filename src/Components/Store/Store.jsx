@@ -1,19 +1,21 @@
 import { Heading, SimpleGrid, Spinner, VStack } from "@chakra-ui/react";
 import axios, { CanceledError } from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import DataCard from "./DataCard";
+import { CartContext } from "../MainApp/App";
 
 const Store = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const { updateCart } = useContext(CartContext);
+
   useEffect(() => {
     setLoading(true);
     axios
       .get("https://fakestoreapi.com/products")
       .then((res) => {
-        console.log(res.data);
         setData(res.data);
         setLoading(false);
       })
@@ -45,7 +47,10 @@ const Store = () => {
         }}
         spacing={10}
       >
-        {data && data.map((item) => <DataCard key={item.id} item={item} />)}
+        {data &&
+          data.map((item) => (
+            <DataCard key={item.id} item={item} updateCart={updateCart} />
+          ))}
       </SimpleGrid>
     </VStack>
   );

@@ -9,7 +9,8 @@ import { Link as ReactRouterLink } from "react-router-dom";
 import pic from "/home/user/React/projects/shopping-cart-project/src/assets/homepage-pic.jpg";
 
 const HomePage = () => {
-  const colorMode = useOutletContext();
+  const [colorMode] = useOutletContext();
+
   return (
     <VStack
       w={"100%"}

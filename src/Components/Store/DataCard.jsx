@@ -1,18 +1,25 @@
 import {
   Button,
-  ButtonGroup,
   Card,
   CardBody,
   CardFooter,
   HStack,
   Heading,
   Image,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { object } from "prop-types";
+import { func, object } from "prop-types";
+import { useRef } from "react";
 
-const DataCard = ({ item }) => {
+const DataCard = ({ item, updateCart }) => {
+  const ref = useRef(null);
+
   return (
     <Card>
       <CardBody>
@@ -26,13 +33,7 @@ const DataCard = ({ item }) => {
           objectFit={"cover"}
           alt={item.title}
         />
-        <Stack
-          mt={5}
-          spacing={6}
-          //   border={"1px solid white"}
-          padding={2}
-          borderRadius={4}
-        >
+        <Stack mt={5} spacing={6} padding={2} borderRadius={4}>
           <Heading color="#00a773" size={"md"}>
             {item.title}
           </Heading>
@@ -46,14 +47,38 @@ const DataCard = ({ item }) => {
         </Stack>
       </CardBody>
       <CardFooter borderTop={"1px solid white"}>
-        <ButtonGroup spacing={5}>
-          <Button variant={"solid"} color="#00a773">
-            Buy Now
-          </Button>
-          <Button variant={"ghost"} color="#00a773">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+
+            const dataObj = {
+              id: item.id,
+              count: Number(ref.current.value),
+            };
+
+            if (ref.current) {
+              updateCart(dataObj);
+              ref.current.value = "";
+            }
+          }}
+        >
+          <Text textAlign={"center"}>Amount</Text>
+          <NumberInput min={1}>
+            <NumberInputField ref={ref} required={true} />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+          <Button
+            width={"40%"}
+            variant={"outline"}
+            color="#00a773"
+            type="submit"
+          >
             Add to Cart
           </Button>
-        </ButtonGroup>
+        </form>
       </CardFooter>
     </Card>
   );
@@ -61,6 +86,7 @@ const DataCard = ({ item }) => {
 
 DataCard.propTypes = {
   item: object,
+  updateCart: func,
 };
 
 export default DataCard;
