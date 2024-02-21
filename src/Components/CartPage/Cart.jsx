@@ -12,10 +12,19 @@ import {
   Th,
   Tbody,
   Td,
+  Button,
 } from "@chakra-ui/react";
 
 const Cart = () => {
   const { cart } = useContext(CartContext);
+  const { deleteItem } = useContext(CartContext);
+
+  function deleteCartItem(e) {
+    console.log(e.target.id);
+    const targetId = Number(e.target.id);
+
+    deleteItem(targetId);
+  }
 
   return (
     <VStack w={"100%"}>
@@ -36,6 +45,7 @@ const Cart = () => {
               <Th color={"#00a773"} isNumeric>
                 Amount
               </Th>
+              <Th></Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -48,6 +58,15 @@ const Cart = () => {
                 <Td>{object.count}</Td>
                 <Td>{object.price}</Td>
                 <Td>{object.price * object.count}</Td>
+                <Td>
+                  <Button
+                    color="red"
+                    id={object.id}
+                    onClick={(e) => deleteCartItem(e)}
+                  >
+                    Delete
+                  </Button>
+                </Td>
               </Tr>
             ))}
           </Tbody>

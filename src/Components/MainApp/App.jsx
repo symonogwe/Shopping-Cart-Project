@@ -20,7 +20,15 @@ function App() {
     setCartItems([...cart, count]);
   }
 
-  if (cart.length > 0) console.log(cart);
+  // function to delete cart item
+  function deleteItem(id) {
+    const newArr = cart.filter((obj) => {
+      if (obj.id !== id) return obj;
+      return;
+    });
+
+    setCartItems(newArr);
+  }
 
   return (
     <Box
@@ -32,11 +40,10 @@ function App() {
       margin={"0 auto"}
       minHeight="100vh"
       paddingTop={3}
-      // bg={"red"}
     >
       <NavBar colorMode={colorMode} toggleColorMode={toggleColorMode} />
       <Center minHeight={"90vh"}>
-        <CartContext.Provider value={{ updateCart, dataObj, cart }}>
+        <CartContext.Provider value={{ updateCart, dataObj, cart, deleteItem }}>
           <Outlet context={colorMode} />
         </CartContext.Provider>
       </Center>
