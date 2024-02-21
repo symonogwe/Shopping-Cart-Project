@@ -51,12 +51,19 @@ const DataCard = ({ item, updateCart }) => {
           onSubmit={(e) => {
             e.preventDefault();
 
-            const dataObj = {
-              id: item.id,
-              count: Number(ref.current.value),
-            };
-
             if (ref.current) {
+              // const dataObj = {
+              //   id: item.id,
+              //   count: Number(ref.current.value),
+              // };
+
+              const dataObj = {
+                ...item,
+                count: Number(ref.current.value),
+              };
+
+              console.log(dataObj);
+
               updateCart(dataObj);
               ref.current.value = "";
             }

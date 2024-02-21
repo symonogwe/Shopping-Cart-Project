@@ -11,7 +11,6 @@ const useData = () => {
     axios
       .get("https://fakestoreapi.com/products")
       .then((res) => {
-        console.log(res.data);
         setData(res.data);
         setLoading(false);
       })

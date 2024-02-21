@@ -1,30 +1,14 @@
 import { Heading, SimpleGrid, Spinner, VStack } from "@chakra-ui/react";
-import axios, { CanceledError } from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import DataCard from "./DataCard";
 import { CartContext } from "../MainApp/App";
 
 const Store = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
   const { updateCart } = useContext(CartContext);
 
-  useEffect(() => {
-    setLoading(true);
-    axios
-      .get("https://fakestoreapi.com/products")
-      .then((res) => {
-        setData(res.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        if (err instanceof CanceledError) return;
-        setError(err.message);
-        setLoading(false);
-      });
-  }, []);
+  const {
+    dataObj: { data, loading, error },
+  } = useContext(CartContext);
 
   return (
     <VStack>
