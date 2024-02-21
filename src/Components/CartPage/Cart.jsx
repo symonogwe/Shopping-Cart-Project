@@ -13,6 +13,7 @@ import {
   Tbody,
   Td,
   Button,
+  Tfoot,
 } from "@chakra-ui/react";
 
 const Cart = () => {
@@ -56,8 +57,8 @@ const Cart = () => {
                 </Td>
                 <Td>{object.title}</Td>
                 <Td>{object.count}</Td>
-                <Td>{object.price}</Td>
-                <Td>{object.price * object.count}</Td>
+                <Td>${object.price}</Td>
+                <Td>${object.price * object.count}</Td>
                 <Td>
                   <Button
                     color="red"
@@ -70,6 +71,23 @@ const Cart = () => {
               </Tr>
             ))}
           </Tbody>
+          <Tfoot>
+            <Tr>
+              <Th>Total</Th>
+              <Th></Th>
+              <Th></Th>
+              <Th></Th>
+              <Th fontSize={"lg"} color={"#00a773"}>
+                $
+                {cart.reduce(
+                  (accumulator, current) =>
+                    current.price * current.count + accumulator,
+                  0
+                )}
+              </Th>
+              <Th></Th>
+            </Tr>
+          </Tfoot>
         </Table>
       </TableContainer>
     </VStack>
