@@ -11,7 +11,7 @@ const Store = () => {
   } = useContext(CartContext);
 
   return (
-    <VStack>
+    <VStack w={"100%"}>
       <Heading mb={4}>Your Store</Heading>
       {loading && (
         <Spinner
