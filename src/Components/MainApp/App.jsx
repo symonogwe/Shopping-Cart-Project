@@ -41,7 +41,11 @@ function App() {
       minHeight="100vh"
       paddingTop={3}
     >
-      <NavBar colorMode={colorMode} toggleColorMode={toggleColorMode} />
+      <NavBar
+        colorMode={colorMode}
+        toggleColorMode={toggleColorMode}
+        cart={cart}
+      />
       <Center minHeight={"90vh"}>
         <CartContext.Provider value={{ updateCart, dataObj, cart, deleteItem }}>
           <Outlet context={colorMode} />

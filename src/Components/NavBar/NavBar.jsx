@@ -1,8 +1,8 @@
 import { Box, HStack, Switch, Text } from "@chakra-ui/react";
 import NavLink from "./NavLink";
-import { func, string } from "prop-types";
+import { array, func, string } from "prop-types";
 
-const NavBar = ({ colorMode, toggleColorMode }) => {
+const NavBar = ({ colorMode, toggleColorMode, cart }) => {
   return (
     <HStack
       justifyContent={"space-evenly"}
@@ -12,7 +12,7 @@ const NavBar = ({ colorMode, toggleColorMode }) => {
     >
       <NavLink path="home" />
       <NavLink path="store" />
-      <NavLink path="cart" />
+      <NavLink path="cart" cart={cart} />
       <Box display="flex" gap={4} whiteSpace={"nowrap"}>
         <Switch onChange={() => toggleColorMode()} colorScheme={"teal"} />
         <Text
@@ -33,6 +33,7 @@ const NavBar = ({ colorMode, toggleColorMode }) => {
 NavBar.propTypes = {
   colorMode: string,
   toggleColorMode: func,
+  cart: array,
 };
 
 export default NavBar;
