@@ -46,17 +46,17 @@ const DataCard = ({ item, updateCart }) => {
           </HStack>
         </Stack>
       </CardBody>
-      <CardFooter borderTop={"1px solid white"}>
+      <CardFooter
+        borderTop={"1px solid white"}
+        display={"grid"}
+        justifyItems={"center"}
+      >
         <form
+          className="card-form"
           onSubmit={(e) => {
             e.preventDefault();
 
             if (ref.current) {
-              // const dataObj = {
-              //   id: item.id,
-              //   count: Number(ref.current.value),
-              // };
-
               const dataObj = {
                 ...item,
                 count: Number(ref.current.value),
@@ -69,8 +69,10 @@ const DataCard = ({ item, updateCart }) => {
             }
           }}
         >
-          <Text textAlign={"center"}>Amount</Text>
-          <NumberInput min={1}>
+          <Text textAlign={"center"} mb={1}>
+            Amount
+          </Text>
+          <NumberInput min={1} mb={4}>
             <NumberInputField ref={ref} required={true} />
             <NumberInputStepper>
               <NumberIncrementStepper />

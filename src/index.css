@@ -14,3 +14,9 @@
   font-family: "Poppins", sans-serif;
   font-weight: 500;
 }
+
+.card-form {
+  display: grid;
+  justify-items: center;
+  padding: 0.8em;
+}
