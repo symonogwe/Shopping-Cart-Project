@@ -79,11 +79,11 @@ const Cart = () => {
               <Th></Th>
               <Th fontSize={"lg"} color={"#00a773"}>
                 $
-                {cart.reduce(
-                  (accumulator, current) =>
-                    current.price * current.count + accumulator,
-                  0
-                )}
+                {cart.reduce((accumulator, current) => {
+                  const total =
+                    Number(current.price) * Number(current.count) + accumulator;
+                  return Math.round(total * 100) / 100;
+                }, 0)}
               </Th>
               <Th></Th>
             </Tr>
