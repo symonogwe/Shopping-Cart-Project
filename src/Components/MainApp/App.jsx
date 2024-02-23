@@ -40,6 +40,8 @@ function App() {
       margin={"0 auto"}
       minHeight="100vh"
       paddingTop={3}
+      className="main-app-box"
+      data-testid={"main-app-box"}
     >
       <NavBar
         colorMode={colorMode}

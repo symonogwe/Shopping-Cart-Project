@@ -1,10 +1,21 @@
+import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
+import { BrowserRouter } from "react-router-dom";
+// Components
+import App from "./App";
 
-describe("something to be truthy and falsy", () => {
-  it("true to be true", () => {
-    expect(true).toBe(true);
-  });
-  it("false to be false", () => {
-    expect(false).toBe(false);
+function MockApp() {
+  return (
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
+}
+
+describe("App component", () => {
+  it("Renders the main box div on the page", () => {
+    render(<MockApp />);
+    const mainBox = screen.getByTestId("main-app-box");
+    expect(mainBox).toBeInTheDocument();
   });
 });
