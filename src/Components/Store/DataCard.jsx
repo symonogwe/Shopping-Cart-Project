@@ -15,10 +15,10 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { func, object } from "prop-types";
-import { useRef } from "react";
+import { useState } from "react";
 
 const DataCard = ({ item, updateCart }) => {
-  const ref = useRef(null);
+  const [value, setValue] = useState("");
 
   return (
     <Card>
@@ -56,35 +56,40 @@ const DataCard = ({ item, updateCart }) => {
           onSubmit={(e) => {
             e.preventDefault();
 
-            if (ref.current) {
-              const dataObj = {
-                ...item,
-                count: Number(ref.current.value),
-              };
+            const inputField = document.getElementById(
+              `number-input-${item.id}`
+            );
 
-              console.log(dataObj);
+            const dataObj = {
+              ...item,
+              count: Number(inputField.value),
+            };
 
-              updateCart(dataObj);
-              ref.current.value = "";
-            }
+            updateCart(dataObj);
+
+            console.log(inputField.value);
+
+            inputField.value = "";
+
+            setValue("");
           }}
         >
           <Text textAlign={"center"} mb={1}>
             Amount
           </Text>
           <NumberInput min={1} mb={4}>
-            <NumberInputField ref={ref} required={true} />
+            <NumberInputField
+              id={`number-input-${item.id}`}
+              required={true}
+              value={value}
+              onInput={(e) => setValue(e.target.value)}
+            />
             <NumberInputStepper>
               <NumberIncrementStepper />
               <NumberDecrementStepper />
             </NumberInputStepper>
           </NumberInput>
-          <Button
-            width={"40%"}
-            variant={"outline"}
-            color="#00a773"
-            type="submit"
-          >
+          <Button variant={"outline"} color="#00a773" type="submit">
             Add to Cart
           </Button>
         </form>
