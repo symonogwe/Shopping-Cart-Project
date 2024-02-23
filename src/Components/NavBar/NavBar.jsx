@@ -9,6 +9,7 @@ const NavBar = ({ colorMode, toggleColorMode, cart }) => {
       borderRadius={9}
       width="70%"
       margin={"0 auto"}
+      data-testid={"navbar"}
     >
       <NavLink path="home" />
       <NavLink path="store" />
