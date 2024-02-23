@@ -49,8 +49,10 @@ function App() {
         cart={cart}
       />
       <Center minHeight={"90vh"}>
-        <CartContext.Provider value={{ updateCart, dataObj, cart, deleteItem }}>
-          <Outlet context={colorMode} />
+        <CartContext.Provider
+          value={{ updateCart, dataObj, cart, deleteItem, colorMode }}
+        >
+          <Outlet />
         </CartContext.Provider>
       </Center>
     </Box>

@@ -1,15 +1,16 @@
 import { Box, Button, Heading, Image, Text, VStack } from "@chakra-ui/react";
 import { string } from "prop-types";
-import { useOutletContext } from "react-router-dom";
 
 import { Link as ChakraLink } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
 
 // images
 import pic from "/home/user/React/projects/shopping-cart-project/src/assets/homepage-pic.jpg";
+import { useContext } from "react";
+import { CartContext } from "../MainApp/App";
 
 const HomePage = () => {
-  const [colorMode] = useOutletContext();
+  const { colorMode } = useContext(CartContext);
 
   return (
     <VStack
