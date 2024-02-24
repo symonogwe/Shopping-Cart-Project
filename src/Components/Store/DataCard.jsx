@@ -21,7 +21,7 @@ const DataCard = ({ item, updateCart }) => {
   const [value, setValue] = useState("");
 
   return (
-    <Card>
+    <Card data-testid="product-cards">
       <CardBody>
         <Image
           src={item.image}
