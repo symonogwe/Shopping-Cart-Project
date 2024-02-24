@@ -15,7 +15,11 @@ const NavBar = ({ colorMode, toggleColorMode, cart }) => {
       <NavLink path="store" />
       <NavLink path="cart" cart={cart} />
       <Box display="flex" gap={4} whiteSpace={"nowrap"}>
-        <Switch onChange={() => toggleColorMode()} colorScheme={"teal"} />
+        <Switch
+          onChange={() => toggleColorMode()}
+          colorScheme={"teal"}
+          data-testid="theme-toggle"
+        />
         <Text
           className={colorMode === "dark" ? "nav-link" : "nav-link-light"}
           fontSize={{
@@ -23,6 +27,7 @@ const NavBar = ({ colorMode, toggleColorMode, cart }) => {
             md: "md",
             xl: "lg",
           }}
+          role="toggle-paragraph"
         >
           {colorMode} mode
         </Text>

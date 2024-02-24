@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { BrowserRouter } from "react-router-dom";
 import { CartContext } from "../MainApp/App";
 import mockData, { mockCart } from "./NavUtils";
@@ -11,13 +11,15 @@ import Store from "../Store/Store";
 import Cart from "../CartPage/Cart";
 
 function MockNavBAr() {
-  const colorMode = "dark";
+  let colorMode = "dark";
   const dataObj = mockData();
   const cart = mockCart;
 
+  const toggleColorMode = vi.fn(() => (colorMode = "light"));
+
   return (
     <BrowserRouter>
-      <NavBar />
+      <NavBar colorMode={colorMode} toggleColorMode={toggleColorMode} />
       <CartContext.Provider value={{ colorMode, dataObj, cart }}>
         <HomePage />
         <Store />
@@ -84,6 +86,43 @@ describe("NavBar component tests", () => {
       });
 
       expect(cartPage).toBeInTheDocument();
+    });
+  });
+  describe("Clicking the switch should toggle the color mode", () => {
+    it("Should initially have a className of 'nav-link' before toggling switch", () => {
+      render(<MockNavBAr />);
+      const togglePara = screen.getByRole("toggle-paragraph");
+      expect(togglePara).toHaveClass("nav-link");
+    });
+
+    it("Should have a className of 'nav-link-light' after toggling switch", async () => {
+      let colorMode = "dark";
+      const toggleColorMode = vi.fn(() => (colorMode = "light"));
+      const dataObj = mockData();
+      const cart = mockCart;
+
+      const user = userEvent.setup();
+
+      render(
+        <BrowserRouter>
+          <NavBar colorMode={colorMode} toggleColorMode={toggleColorMode} />
+          <CartContext.Provider value={{ colorMode, dataObj, cart }}>
+            <HomePage />
+            <Store />
+            <Cart />
+          </CartContext.Provider>
+        </BrowserRouter>
+      );
+
+      const toggleTheme = screen.getByTestId("theme-toggle");
+      toggleTheme.onchange = () => {
+        toggleColorMode();
+      };
+
+      await user.click(toggleTheme);
+
+      expect(toggleColorMode).toHaveBeenCalled();
+      expect(colorMode).toBe("light");
     });
   });
 });
