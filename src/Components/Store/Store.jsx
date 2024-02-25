@@ -20,6 +20,7 @@ const Store = () => {
           emptyColor="gray.200"
           color="#00a773"
           size="xl"
+          data-testid="store-spinner"
         />
       )}
       {error && <p>{error}</p>}

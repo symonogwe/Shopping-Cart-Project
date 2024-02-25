@@ -1,15 +1,11 @@
 import mockData from "../NavBar/NavUtils";
-function data() {
-    return mockData()
+
+function productFetch() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(mockData());
+    }, 5000);
+  });
 }
 
-function mockDataFetch() {
-  let data;
-  setTimeout(async () => {
-    await data = mockData();
-  }, 5000);
-
-  return data;
-}
-
-export default mockDataFetch;
+export default productFetch;
