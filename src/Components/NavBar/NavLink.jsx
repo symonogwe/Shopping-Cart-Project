@@ -44,6 +44,7 @@ const NavLink = ({ path, cart }) => {
                 xl: "20px",
               }}
               color={"#00a773"}
+              data-testid="cart-length-div"
             >
               {cart.length}
             </Box>

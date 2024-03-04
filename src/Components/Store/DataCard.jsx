@@ -83,13 +83,19 @@ const DataCard = ({ item, updateCart }) => {
               required={true}
               value={value}
               onInput={(e) => setValue(e.target.value)}
+              data-testid={`product-input-${item.id}`}
             />
             <NumberInputStepper>
               <NumberIncrementStepper />
               <NumberDecrementStepper />
             </NumberInputStepper>
           </NumberInput>
-          <Button variant={"outline"} color="#00a773" type="submit">
+          <Button
+            variant={"outline"}
+            color="#00a773"
+            type="submit"
+            data-testid={`product-button-${item.id}`}
+          >
             Add to Cart
           </Button>
         </form>
