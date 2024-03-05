@@ -10,7 +10,7 @@ This project is a mock e-commerce site built to test understanding of React Rout
 - Displays products on the store page
 - Allows users to view product details and add items to their cart
 - Provides functionality to delete items from the cart
-- Thoroughly tested using Jest and React Testing Library
+- Tested using Jest and React Testing Library
 
 ## Technologies Used:
 
