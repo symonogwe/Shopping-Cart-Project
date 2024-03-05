@@ -48,7 +48,7 @@ function App() {
         toggleColorMode={toggleColorMode}
         cart={cart}
       />
-      <Center minHeight={"90vh"}>
+      <Center minHeight={"90vh"} data-testid="1234">
         <CartContext.Provider
           value={{ updateCart, dataObj, cart, deleteItem, colorMode }}
         >
