@@ -5,7 +5,7 @@ import { Link as ChakraLink } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
 
 // images
-import pic from "/home/user/React/projects/shopping-cart-project/src/assets/homepage-pic.jpg";
+import pic from "../../assets/homepage-pic.jpg";
 import { useContext } from "react";
 import { CartContext } from "../MainApp/App";
 
